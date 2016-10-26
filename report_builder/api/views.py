@@ -138,9 +138,11 @@ class FieldsView(RelatedFieldsView):
 
         # External packages might cause duplicates. This clears it up
         new_set = []
+        added_names = set()
         for i in field_data['fields']:
-            if i not in new_set:
+            if i.name not in added_names:
                 new_set.append(i)
+                added_names.add(i.name)
         field_data['fields'] = new_set
 
         result = []
